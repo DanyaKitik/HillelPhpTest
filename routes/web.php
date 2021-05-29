@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\PaginateController::class)
     ->name('home');
 
+Route::get('/ad_view/{id?}', \App\Http\Controllers\AuthController::class . '@ad_view')
+    ->name('ad_view');
+
 Route::middleware('guest')->group(function () {
 
     Route::get('/login', \App\Http\Controllers\AuthController::class . '@login')
@@ -41,8 +44,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/update/{id?}', \App\Http\Controllers\CRUDController::class . '@update');
 
-    Route::get('/ad_view/{id?}', \App\Http\Controllers\AuthController::class . '@ad_view')
-        ->name('ad_view');
 
     Route::get('/create', \App\Http\Controllers\CRUDController::class . '@form')
         ->name('create');
